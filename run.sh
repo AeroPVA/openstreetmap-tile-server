@@ -37,6 +37,8 @@ fi
 # carto build
 if [ ! -f /data/style/mapnik.xml ]; then
     cd /data/style/
+    wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-dark.mml
+    wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette-dark.mss
     carto ${NAME_MML:-project.mml} > mapnik.xml
 fi
 
@@ -95,11 +97,12 @@ if [ "$1" == "import" ]; then
         OSM2PGSQL_EXTRA_ARGS="${OSM2PGSQL_EXTRA_ARGS:-} --flat-nodes /data/database/flat_nodes.bin"
     fi
 
+
     # Import data
     sudo -u renderer osm2pgsql -d gis --create --slim -G --hstore  \
-      --tag-transform-script /data/style/${NAME_LUA:-openstreetmap-carto.lua}  \
+      --tag-transform-script /data/style/${NAME_LUA:-style.lua}  \
       --number-processes ${THREADS:-4}  \
-      -S /data/style/${NAME_STYLE:-openstreetmap-carto.style}  \
+      -S /data/style/${NAME_STYLE:-default.style}  \
       /data/region.osm.pbf  \
       ${OSM2PGSQL_EXTRA_ARGS:-}  \
     ;
