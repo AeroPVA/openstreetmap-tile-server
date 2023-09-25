@@ -40,6 +40,7 @@ if [ ! -f /data/style/mapnik.xml ]; then
     wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-dark.mml
     wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette-dark.mss
     wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette.mss
+    wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/base.mss
     carto ${NAME_MML:-project.mml} > mapnik.xml
 fi
 
