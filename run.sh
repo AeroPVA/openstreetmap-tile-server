@@ -37,6 +37,12 @@ fi
 # carto build
 if [ ! -f /data/style/mapnik.xml ]; then
     cd /data/style/
+
+    rm project-dark.mml
+    rm palette-dark.mss
+    rm palette.mss
+    rm base.mss
+
     wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-dark.mml
     wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette-dark.mss
     wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette.mss
