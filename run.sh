@@ -38,15 +38,16 @@ fi
 if [ ! -f /data/style/mapnik.xml ]; then
     cd /data/style/
 
-    rm project-dark.mml
-    rm palette-dark.mss
-    rm palette.mss
-    rm base.mss
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/base.mss
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/labels.mss
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-en-dark.mml
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-en-light.mml
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-ru-dark.mml
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-ru-light.mml
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette-dark.mss
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette-light.mss
+    curl -O https://raw.githubusercontent.com/AeroPVA/osm-bright/main/roads.mss
 
-    wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/project-dark.mml
-    wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette-dark.mss
-    wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/palette.mss
-    wget https://raw.githubusercontent.com/AeroPVA/osm-bright/main/base.mss
     carto ${NAME_MML:-project.mml} > mapnik.xml
 fi
 
